@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Facturas {
 
 	private String proveedor;
-	private String numeroFactura;
+	private int numeroFactura;
 	private LocalDate fecha;
 	private String rutaImagen;
-	private int precio;
+	private double precio;
 
-	public Facturas(String proveedor, String numeroFactura, LocalDate fecha, String rutaImagen, int precio) {
+	public Facturas(String proveedor, int numeroFactura, LocalDate fecha, String rutaImagen, double precio) {
 		this.proveedor = proveedor;
 		this.numeroFactura = numeroFactura;
 		this.fecha = fecha;
@@ -22,7 +22,7 @@ public class Facturas {
 		return proveedor;
 	}
 
-	public String getNumeroFactura() {
+	public int getNumeroFactura() {
 		return numeroFactura;
 	}
 
@@ -38,7 +38,7 @@ public class Facturas {
 		this.proveedor = proveedor;
 	}
 
-	public void setNumeroFactura(String numeroFactura) {
+	public void setNumeroFactura(int numeroFactura) {
 		this.numeroFactura = numeroFactura;
 	}
 
@@ -50,7 +50,7 @@ public class Facturas {
 		this.rutaImagen = rutaImagen;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
