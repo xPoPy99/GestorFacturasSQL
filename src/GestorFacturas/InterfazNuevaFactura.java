@@ -179,7 +179,7 @@ public class InterfazNuevaFactura extends JFrame {
 	        // Datos para la tabla
 	        String tabla = "facturas";
 	        String[] columnas = {"proveedor", "fecha", "imagen", "total", "numero_factura"};
-	        Object[] valores = {proveedor, fecha, destino.toString(), Double.parseDouble(importe), Integer.parseInt(numeroFactura)};
+	        Object[] valores = {proveedor.toLowerCase(), fecha, destino.toString(), Double.parseDouble(importe), Integer.parseInt(numeroFactura)};
 	        conexion.crearRegistro(tabla, columnas, valores);
 
 	    } catch (SQLException e) {
