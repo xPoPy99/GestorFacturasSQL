@@ -35,7 +35,7 @@ public class InterfazNuevaFactura extends JFrame {
 	public InterfazNuevaFactura() {
 		setTitle("Gestión de Facturas");
 		setSize(400, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new GridBagLayout());
 
 		// Configuración del layout y constraints para GridBagLayout

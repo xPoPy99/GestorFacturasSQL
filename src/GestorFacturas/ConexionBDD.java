@@ -5,7 +5,7 @@ import java.sql.*;
 import java.sql.*;
 
 public class ConexionBDD {
-    private Connection conexion;
+    Connection conexion;
     private String url;
     private String usuario;
     private String pass;
@@ -17,12 +17,12 @@ public class ConexionBDD {
     }
 
     public void conectar() throws SQLException {
-        conexion = DriverManager.getConnection(url, usuario, pass);
+        setConexion(DriverManager.getConnection(url, usuario, pass));
     }
 
     public void desconectar() throws SQLException {
-        if (conexion != null && !conexion.isClosed()) {
-            conexion.close();
+        if (getConexion() != null && !getConexion().isClosed()) {
+            getConexion().close();
         }
     }
     
@@ -63,7 +63,7 @@ public class ConexionBDD {
         
         consulta.append(")");
 
-        PreparedStatement ps = conexion.prepareStatement(consulta.toString());
+        PreparedStatement ps = getConexion().prepareStatement(consulta.toString());
 
         for (int i = 0; i < valores.length; i++) {
             ps.setObject(i + 1, valores[i]);
@@ -74,7 +74,7 @@ public class ConexionBDD {
     }
 
     public ResultSet leerRegistros(String tabla) throws SQLException {
-        Statement statement = conexion.createStatement();
+        Statement statement = getConexion().createStatement();
         String consulta = "SELECT * FROM " + tabla;
         ResultSet resultado = statement.executeQuery(consulta);
         return resultado;
@@ -94,7 +94,7 @@ public class ConexionBDD {
         
         consulta.append(" WHERE ").append(columnaCondicion).append(" = ?");
         
-        PreparedStatement ps = conexion.prepareStatement(consulta.toString());
+        PreparedStatement ps = getConexion().prepareStatement(consulta.toString());
 
         for (int i = 0; i < valores.length; i++) {
             ps.setObject(i + 1, valores[i]);
@@ -108,11 +108,19 @@ public class ConexionBDD {
 
     public void eliminarRegistro(String tabla, String columnaCondicion, Object valorCondicion) throws SQLException {
         String consulta = "DELETE FROM " + tabla + " WHERE " + columnaCondicion + " = ?";
-        PreparedStatement ps = conexion.prepareStatement(consulta);
+        PreparedStatement ps = getConexion().prepareStatement(consulta);
         ps.setObject(1, valorCondicion);
         ps.executeUpdate();
         ps.close();
     }
+
+	public Connection getConexion() {
+		return conexion;
+	}
+
+	public void setConexion(Connection conexion) {
+		this.conexion = conexion;
+	}
 }
 
 
